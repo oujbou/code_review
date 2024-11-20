@@ -1,0 +1,7 @@
+.idea/
+/__pycache__/
+/venv/
+/extracted_project/
+cv_parser_poc-master.zip
+.env
+main.py
