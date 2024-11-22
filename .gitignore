@@ -2,6 +2,7 @@
 /__pycache__/
 /venv/
 /extracted_project/
-cv_parser_poc-master.zip
+temp/
+*.zip
 .env
 main.py

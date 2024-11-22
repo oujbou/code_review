@@ -1,5 +1,6 @@
 import os
 import uuid
+import shutil
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from langchain_community.embeddings import OpenAIEmbeddings
@@ -40,5 +41,8 @@ def store_file_embeddings(zip_path):
                         "content": content,
                         "embedding": embedding
                     })
+
+    # Delete the extracted folder of the project after processing
+    shutil.rmtree(project_path, ignore_errors=True)
     return project_id
 

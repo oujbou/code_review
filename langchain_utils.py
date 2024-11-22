@@ -4,10 +4,9 @@ import zipfile
 import mimetypes
 import openai
 from langchain_community.llms import OpenAI
-from langchain_community.embeddings import OpenAIEmbeddings
 from pymongo import MongoClient
 
-from prompts import get_prompt
+from prompts import get_prompt_2
 
 load_dotenv()
 
@@ -52,7 +51,7 @@ def analyse_project_from_store(project_id):
         elif file_name.endswith((".java", ".py", ".ipynb", ".cs", ".php", ".swift")):
             code_snippets.append(content)
 
-    prompt = get_prompt(libraries, config_files, code_snippets)
+    prompt = get_prompt_2(libraries, config_files, code_snippets)
 
     response = openai.chat.completions.create(
         model="gpt-4",
