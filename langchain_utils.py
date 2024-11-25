@@ -6,7 +6,7 @@ import openai
 from langchain_community.llms import OpenAI
 from pymongo import MongoClient
 
-from prompts import get_prompt_2
+from prompts import get_prompt_boss_2
 
 load_dotenv()
 
@@ -51,7 +51,7 @@ def analyse_project_from_store(project_id):
         elif file_name.endswith((".java", ".py", ".ipynb", ".cs", ".php", ".swift")):
             code_snippets.append(content)
 
-    prompt = get_prompt_2(libraries, config_files, code_snippets)
+    prompt = get_prompt_boss_2(libraries, config_files, code_snippets)
 
     response = openai.chat.completions.create(
         model="gpt-4",
@@ -59,7 +59,8 @@ def analyse_project_from_store(project_id):
             {"role": "user",
              "content": prompt
              }
-        ]
+        ],
+        temperature=0
     )
 
     content = response.choices[0].message.content

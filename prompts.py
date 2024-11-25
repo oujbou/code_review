@@ -199,5 +199,90 @@ def get_prompt_boss(libraries, config_files, code_snippets):
     automatique, limitant le besoin de connaissance approfondie du code existant.
     """
 
+def get_prompt_boss_2 (libraries, config_files, code_snippets):
+    libraries_text = ", ".join(libraries)
+    config_files_text = "\n\n".join(config_files)
+    code_snippets_text = "\n\n".join(code_snippets)
+
+    return f"""
+    # GitHub Project Analysis
+
+    ## Libraries
+    {libraries_text}
+
+    ## Configurations
+    {config_files_text}
+
+    ## Code Snippets
+    {code_snippets_text}
+    
+    Analyse ce projet de code source et génère un fichier Markdown (.md) suivant le format ci-dessous.
+    Le fichier doit identifier les vulnérabilités potentielles dans le projet, en se basant sur les 
+    meilleures pratiques de sécurité (comme OWASP Top 10) et les normes pertinentes (ISO 25010, 
+    12-Factor App). Adapte les sections aux problèmes détectés dans le projet analysé.
+    
+    ### Format du fichier .md à générer :
+    ## Informations générales
+    ### Titre : [Titre clair et descriptif]
+    ### Sévérité :
+    [Critique / Majeure / Mineure]
+    ### Occurrences :
+    [Nombre d'occurrences ou exemples spécifiques]
+    ### Portée :
+    [Sécurité / Conformité / Performance]
+    ### Catégorie ISO 25010 :
+    [Sécurité / Fiabilité / Maintenabilité]
+    
+    ## Description technique
+    ### Nature du problème
+    [Description concise du problème]
+    
+    ### Contexte
+    [Contexte du projet ou des fichiers concernés]
+    
+    # Violations détectées
+    [Mentionner les violations spécifiques des normes, ex. OWASP Top 10 - A07, 12-Factor App, etc.]
+    ## Implications architecturales
+    [Impact du problème sur l'architecture globale]
+    ## Impact détaillé
+    ### Sécurité :
+    [Ex. Exposition des données sensibles]
+    ### Conformité :
+    [Ex. Non-respect des normes RGPD ou PCI-DSS]
+    ### Déploiement :
+    [Ex. Risque de fuites pendant CI/CD]
+    ### Tests :
+    [Ex. Difficulté à valider les environnements]
+    ### Code problématique
+    '''Insérer un extrait de code pertinent qui illustre la vulnérabilité'''
+    
+    ## Solutions possibles
+    ### Solution immédiate (.env) :
+    '''Code ou approche à intégrer'''
+    ### Autre solution [ex. HashiCorp Vault, CyberArk, HSM] :
+    '''Expliquer et fournir un exemple d'implémentation'''
+    ## Comparaison des solutions
+    | Solution	| Avantages	| Inconvénients	| Complexité	| Temps estimé
+    | .env	| Simple, rapide	| Gestion de fichiers	| Faible	| X jour(s)
+    | HashiCorp Vault	| Robuste, centralisation des secrets	| Infrastructure nécessaire	| Moyenne	| X jour(s)
+    | CyberArk	| Normes d'entreprise	| Complexe, coûteux	| Moyenne	| X jour(s)
+    ## Risques associés
+    [Expliquer les risques identifiés]
+    ## Documentation de référence
+    [Liens pertinents vers les bonnes pratiques ou outils]
+    ## Estimation de correction
+    ### Analyse : X jour(s)
+    ### Développement : X jour(s)
+    ### Tests : X jour(s)
+    ### Documentation : X jour(s)
+    ### Déploiement : X jour(s)
+    ### Total : X jour(s)
+    
+    Analyse le projet, détecte les vulnérabilités, et génère un fichier Markdown suivant ce format.
+    Assure-toi que les solutions proposées soient adaptées au projet et compatibles avec les 
+    meilleures pratiques de l'industrie.
+
+
+"""
     
     
