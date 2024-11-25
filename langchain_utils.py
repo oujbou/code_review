@@ -60,7 +60,7 @@ def analyse_project_from_store(project_id):
              "content": prompt
              }
         ],
-        temperature=0
+        temperature=0.5
     )
 
     content = response.choices[0].message.content

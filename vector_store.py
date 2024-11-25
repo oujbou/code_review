@@ -1,4 +1,5 @@
 import os
+import ssl
 import uuid
 import shutil
 from dotenv import load_dotenv
@@ -10,7 +11,11 @@ load_dotenv()
 
 # MongoDB Atlas connection setup
 MONGO_URI = os.getenv("MONGO_URI")
-client = MongoClient(MONGO_URI)
+client = MongoClient(
+    MONGO_URI,
+    ssl=True,
+    ssl_cert_reqs=ssl.CERT_NONE
+)
 db = client['github_vector_store']
 collection = db['embeddings']
 
