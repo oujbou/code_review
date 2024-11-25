@@ -14,7 +14,6 @@ MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(
     MONGO_URI,
     tls=True,
-    tlsAllowInvalidCertificates=True
 )
 db = client['github_vector_store']
 collection = db['embeddings']
